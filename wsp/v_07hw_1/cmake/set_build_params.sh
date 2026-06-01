@@ -1,0 +1,5 @@
+#!/bin/bash
+
+BUILD_DIR=../../../build/$WSP_VER_DIR/$PLATFORM_NAME
+CMAKE_SRC_VER=03
+SRC_CFG=05
