@@ -60,6 +60,7 @@ class mcuUsartRs485_t :  public mcuBase_t
             void    tx_eventEnd             (void)            override;
 
         // receive
+            bool    rx_chkInterruptRaised   (void)            override;
             bool    rx_chkError_overrun     (void)            override;
             void    rx_eventBegin           (void)            override;
             uint8_t rx_eventReceiveData     (void)            override;

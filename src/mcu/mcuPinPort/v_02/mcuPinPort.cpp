@@ -37,15 +37,19 @@
 // ****************************************************
 // section start **** CONSTRUCTOR *****
 
-    mcuPinPort_t::mcuPinPort_t(                 uint8_t  p_port, uint8_t p_pin, const gpio_config_struct_t& p_config) :
+    mcuPinPort_t::mcuPinPort_t(                 uint8_t  p_port, uint8_t p_pin, uint8_t p_dir) :
          g_ptrPort      {&g_ptrPortArray[p_port]}
-        ,g_config       {p_config}
         ,g_mcuIdOwner   {MCU_DEVICE_DEFAULT}
         ,g_ptrShmPort   {nullptr}
         ,g_port         {p_port}
         ,g_pin          {p_pin}
+        ,g_dir          {p_dir}
         // ,g_dtyStatus    {&g_status}
-    {}
+    {
+        g_config.mode = static_cast<k_modePort_t>(p_dir);
+        // default value when pin is configured as input pin
+        if(!p_dir) pinSet;
+    }
 
     mcuPinPort_t::mcuPinPort_t(uint8_t p_mcuId, uint8_t  p_port, uint8_t p_pin, const gpio_config_struct_t& p_config) :
          g_ptrPort      {&g_ptrPortArray[p_port]}

@@ -102,6 +102,11 @@
 
 
     // receive
+        bool    mcuUsartRs485_t::rx_chkInterruptRaised    (void)             {
+            // return !shmMcuUsart_t::pidMatches();
+            return !pidMatches();    // derived from shmMcuUsart_t
+        }
+
         bool    mcuUsartRs485_t::rx_chkError_overrun   (void)                         {
             return false;
         }

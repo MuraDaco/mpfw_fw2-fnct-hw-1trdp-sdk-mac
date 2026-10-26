@@ -355,6 +355,7 @@
         		if(0 == g_msg_ptr->gActiveProcessNum)	{
         			// the current process is the first one
         			// so no process is active
+                    prox_buffer_clean();
         			add_2();
         		}
             } else {
@@ -374,6 +375,14 @@
     	g_msg_ptr->gLockProcess.clear(std::memory_order_release);
 
         return l_result;
+    }
+
+
+    void shmManager_t::prox_buffer_clean (void) {
+    	for(uint8_t i=0;i<PROCESS_MAX_NUMBER;i++) {
+            g_msg_ptr->process_buffer[i].pid = 0;
+        }
+
     }
 
     bool shmManager_t::semaphore (void) {

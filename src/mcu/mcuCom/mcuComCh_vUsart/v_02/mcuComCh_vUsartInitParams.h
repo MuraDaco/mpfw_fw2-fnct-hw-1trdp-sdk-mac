@@ -22,48 +22,24 @@
 //  *******************************************************************************
 
 /*
- * mcuUsart.h
+ * mcuComCh_vUsartInitParams.cpp
  *
- *  Created on: Jun, 27 2024
- *      Author: Marco Dau
+ *  Created on: Sep, 1st 2026 (Tue)
+  *      Author: Marco Dau
  */
 
 
-#ifndef MCU_USART_H
-#define MCU_USART_H
+#ifndef     MCU_COM_CH_V_USART_INIT_PARAMS_H_
+#define     MCU_COM_CH_V_USART_INIT_PARAMS_H_
 
-#include "mcuBase.h"
-#include "vhwProxIntfc.h"
-#include "shmMcuUsart.h"
-#include "mcuUsartRegister.h"
+#include "hw0ConfigUsart.h"
 
 
-class mcuUsartEvents_t :   public comEventInterface_t
-{
-public:
+struct  mcuComCh_vUsartInitParams_t {
 
-    mcuUsartEvents_t  (mcuUsartRegister_t* p_register);
-
-
-    void vhwInit (void)         override;
-    void vhwLoop (void)         override;
-
-    void    chEnable            (void);
-    uint8_t check_read_write    (void);
-    static void    tx_fifo_write       (void* p_ptrData, char c);
-    static uint8_t rx_fifo_read        (void* p_ptrData);
-
-    static callback_protocol_functions_t g_callback_protocol_functions;
-
-private:
-
-    uint8_t g_mcuId;
-    k_mcuUsart_t    g_ch;
-
-
-
+    uint8_t         pid2;
+    k_hw0Usart_t    ch;
 };
 
 
-#endif 	// MCU_USART_H
-
+#endif  //  MCU_COM_CH_V_USART_INIT_PARAMS_H_

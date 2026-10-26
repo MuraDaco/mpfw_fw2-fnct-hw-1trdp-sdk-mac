@@ -70,7 +70,7 @@ class mcuPinPort_t :     public     mcuBase_t           // (specific platform) -
 // section start **** CONSTRUCTOR *****
     public:
 
-    mcuPinPort_t  (                   uint8_t  p_port,    uint8_t p_pin, const gpio_config_struct_t& p_config);
+    mcuPinPort_t  (                   uint8_t  p_port,    uint8_t p_pin, uint8_t p_dir  );
     mcuPinPort_t  (uint8_t p_mcuId,   uint8_t  p_port,    uint8_t p_pin, const gpio_config_struct_t& p_config);
 
     // section end   **** CONSTRUCTOR ***** 
@@ -101,6 +101,7 @@ class mcuPinPort_t :     public     mcuBase_t           // (specific platform) -
 
         uint8_t g_port;
         uint8_t g_pin;
+        uint8_t g_dir;
         uint8_t g_valuePinOld;
         bool    g_valueModified;
         

@@ -80,15 +80,15 @@ class shmManager_t: public shmBase_t {
 
         typedef struct _shared_mem_struct
         {
-            int gNew;
-            int gDel;
-            int pid;
-            int gActivePid;
-            uint8_t gActiveProcessNum;
-            uint8_t reader_counter;
+            volatile pid_t gNew;
+            volatile pid_t gDel;
+
+            volatile pid_t gActivePid;
+            volatile uint8_t gActiveProcessNum;
+
         	shm_process_struct_t process_buffer[PROCESS_MAX_NUMBER];
             std::atomic_flag gLockProcess;
-            int gProcessWriterPid;
+            volatile pid_t gProcessWriterPid;
         } shared_mem_struct_t;
 
         static int g_shmFd;
@@ -106,6 +106,7 @@ class shmManager_t: public shmBase_t {
 
     private:
         static k_statusInit_t semaphore_init  (void);
+        static void prox_buffer_clean       (void);
         static bool semaphore       (void);
 
     // section end   **** CONCURRENT PROCEDURES ***** 

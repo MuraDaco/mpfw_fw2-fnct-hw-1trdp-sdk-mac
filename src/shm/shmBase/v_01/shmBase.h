@@ -33,6 +33,8 @@
 #define SHM_BASE_H
 
 #include <cstdint>
+#include <sys/types.h>
+#include <unistd.h>             // for getpid(), ftruncate()
 
 
 class shmBase_t {
@@ -52,7 +54,7 @@ class shmBase_t {
 
         static k_statusInit_t g_status;
 
-        static int32_t g_pid;
+        static pid_t g_pid;
 
     // section end   **** INITIALIZATION MANAGEMENT ***** 
     // ****************************************************
